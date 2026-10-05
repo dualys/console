@@ -1,4 +1,4 @@
-name: PC
+name: Console
 on:
   push:
     branches: ["main"]
