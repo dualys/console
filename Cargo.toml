@@ -18,9 +18,7 @@ edition = "2024"
 version = "0.0.0"
 
 [workspace.dependencies]
-kpack = { path = "kpack" }
 ra = { path = "ra" }
-plan = { path = "plan" }
 jinshu = { path = "jinshu" }
 noun = { path = "noun" }
 blake3 = { version = "1.8.6", default-features = false }
