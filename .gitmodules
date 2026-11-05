@@ -19,3 +19,6 @@
 [submodule "plans"]
 	path = plans
 	url = https://github.com/dualys/plan.git
+[submodule "wuu"]
+	path = wuu
+	url = https://github.com/dualys/wuu

@@ -1,5 +1,5 @@
 [workspace]
-members = [ "re", "ra", "jinshu", "kpack", "noun" , "maaty", "plans"]
+members = [ "re", "ra", "jinshu", "kpack", "noun" , "maaty", "plans", "wuu" ]
 resolver = "3"
 [profile.dev]
 opt-level = 2
@@ -18,8 +18,8 @@ edition = "2024"
 version = "0.0.0"
 
 [workspace.dependencies]
-ra = { path = "ra" }
 jinshu = { path = "jinshu" }
+wuu  = { path = "wuu" }
 heapless = { version = "0.9.3", default-features = false }
 x86_64 = { version = "0.15.5", default-features = false, features = [
     "instructions",
