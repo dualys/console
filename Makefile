@@ -195,8 +195,8 @@ endef
 define make_image
 	@$(call center_text, Building kernel (re))
 	RUSTFLAGS="-C relocation-model=static -C link-arg=-no-pie" $(CARGO) build --jobs $(NUM_JOBS) --target x86_64-unknown-none -Zbuild-std=core,alloc,compiler_builtins --bin re --release
-	@$(call center_text, Building init (maat))
-	RUSTFLAGS="-C relocation-model=static -C link-arg=-no-pie" $(CARGO) build --jobs $(NUM_JOBS) --target x86_64-unknown-none -Zbuild-std=core,alloc,compiler_builtins --bin maat --release
+	@$(call center_text, Building init (maaty))
+	RUSTFLAGS="-C relocation-model=static -C link-arg=-no-pie" $(CARGO) build --jobs $(NUM_JOBS) --target x86_64-unknown-none -Zbuild-std=core,alloc,compiler_builtins --bin maaty --release
 	@$(call center_text, Creating UEFI Boot Image with Limine)
 	@mkdir -p target/
 	@dd if=/dev/zero of=$(IMAGE_PATH) bs=1M count=64 status=none
@@ -209,7 +209,7 @@ define make_image
 	@mcopy -i $(IMAGE_PATH) boot/limine-bios.sys ::/limine-bios.sys
 	@mcopy -i $(IMAGE_PATH) boot/assets/wallpaper.jpg ::/boot/wallpaper.jpg
 	@mcopy -i $(IMAGE_PATH) target/x86_64-unknown-none/release/re  ::/boot/re
-	@mcopy -i $(IMAGE_PATH) target/x86_64-unknown-none/release/maat ::/boot/maat
+	@mcopy -i $(IMAGE_PATH) target/x86_64-unknown-none/release/maaty ::/boot/maaty
 	@limine bios-install $(IMAGE_PATH) 2>/dev/null || true
 	@$(call center_text, Image $(IMAGE_PATH) ready!)
 endef
@@ -218,8 +218,8 @@ endef
 define make_iso
 	@$(call center_text, Building kernel (re))
 	RUSTFLAGS="-C relocation-model=static -C link-arg=-no-pie" $(CARGO) build --jobs $(NUM_JOBS) --target x86_64-unknown-none -Zbuild-std=core,alloc,compiler_builtins --bin re --release
-	@$(call center_text, Building init (maat))
-	RUSTFLAGS="-C relocation-model=static -C link-arg=-no-pie" $(CARGO) build --jobs $(NUM_JOBS) --target x86_64-unknown-none -Zbuild-std=core,alloc,compiler_builtins --bin maat --release
+	@$(call center_text, Building init (maaty))
+	RUSTFLAGS="-C relocation-model=static -C link-arg=-no-pie" $(CARGO) build --jobs $(NUM_JOBS) --target x86_64-unknown-none -Zbuild-std=core,alloc,compiler_builtins --bin maaty --release
 	@$(call center_text, Creating Bootable ISO with Limine)
 	@mkdir -p ISO/boot ISO/EFI/BOOT
 	@if [ -f BOOTX64.EFI ]; then cp BOOTX64.EFI ISO/EFI/BOOT/BOOTX64.EFI; fi
@@ -227,7 +227,7 @@ define make_iso
 	@cp limine.conf ISO/boot/limine.conf
 	@if [ -f "assets/wallpaper.jpg" ]; then cp assets/wallpaper.jpg ISO/boot/wallpaper.jpg; fi
 	@cp target/x86_64-unknown-none/release/re ISO/boot/re
-	@cp target/x86_64-unknown-none/release/maat ISO/boot/maat
+	@cp target/x86_64-unknown-none/release/maaty ISO/boot/maaty
 	@if [ -f limine-uefi-cd.bin ]; then cp limine-uefi-cd.bin ISO/limine-uefi-cd.bin; fi
 
 	# === AJOUT POUR LE BIOS LEGACY ===
