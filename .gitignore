@@ -1,2 +1,5 @@
 ci/
 target/
+*.iso
+*.img
+ISO/

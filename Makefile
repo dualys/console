@@ -51,9 +51,8 @@ QEMU_FLAGS := \
   -enable-kvm -machine q35,accel=kvm \
   -cpu host \
   -smp $(QEMU_SMP) \
-  -m 2G \
-  -display vnc=0.0.0.0:0 \
-  -serial mon:stdio \
+  -m 4G \
+  -display gtk \
   -vga virtio \
   -drive if=pflash,format=raw,readonly=on,file=$(OVMF_CODE) \
   -drive if=pflash,format=raw,file=target/OVMF_VARS.fd \
@@ -62,7 +61,6 @@ QEMU_FLAGS := \
   -drive if=none,format=raw,file=$(NVME_IMG),id=drv1 \
   -device nvme,drive=drv1,serial=nvme-1 \
   -device isa-debug-exit,iobase=0xf4,iosize=0x04 \
-  -no-reboot -no-shutdown
 
 # Configure QEMU for launching the ISO file
 QEMU_ISO_FLAGS := \
